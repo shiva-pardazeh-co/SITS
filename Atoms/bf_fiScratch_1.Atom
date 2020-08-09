@@ -1,0 +1,116 @@
+object bf_fiScratch_1: FPlatform
+  Left = 285
+  Top = 132
+  Hint = 'bf_fiScratch_1'
+  Caption = #1575#1587#1606#1575#1583' '#1670#1603' '#1606#1608#1610#1587
+  ClientHeight = 470
+  ClientWidth = 691
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesigned
+  ShowHint = True
+  Description.Strings = (
+    'Company Name=Shiva Pardazeh Co.'
+    'Product Name='
+    'Product Version=1.0.0.0'
+    'Product Description='
+    'Last Date Edition=yyyy/mm/dd'
+    'File Version=1.0.0.0'
+    'File Description='
+    'Author Name='
+    'Comments=')
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 2
+    Top = 14
+    Width = 689
+    Height = 451
+    BiDiMode = bdRightToLeft
+    DataSource = DataSource1
+    ParentBiDiMode = False
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object PIBQuery1: TUnVisualComponent
+    Left = 796
+    Top = 2
+    Width = 25
+    Height = 24
+    Hint = 'IBQuery1'
+    BevelOuter = bvNone
+    Caption = 'PIBQuery1'
+    Constraints.MaxHeight = 31
+    Constraints.MaxWidth = 31
+    Constraints.MinHeight = 24
+    Constraints.MinWidth = 24
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    SubComp = IBQuery1
+  end
+  object PDataSource1: TUnVisualComponent
+    Left = 768
+    Top = 1
+    Width = 24
+    Height = 24
+    Hint = 'DataSource1'
+    BevelOuter = bvNone
+    Caption = 'PDataSource1'
+    Constraints.MaxHeight = 31
+    Constraints.MaxWidth = 31
+    Constraints.MinHeight = 24
+    Constraints.MinWidth = 24
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    SubComp = DataSource1
+  end
+  object IBQuery1: TIBQuery
+    Database = FFormDesignerDataShare.MainDatabase
+    Transaction = FFormDesignerDataShare.MainTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      'select * from dt')
+  end
+  object DataSource1: TDataSource
+    DataSet = IBQuery1
+  end
+  object Event1: TEvent
+    Comp = Owner
+    ProcName = 'OnShow'
+    CodeBox.Strings = (
+      'function main:integer;'
+      'var sh:widestring;'
+      ' begin'
+      ''
+      ''
+      
+        'sh  := RunSQL ('#39'select RDB$Get_Context ('#39#39'USER_SESSION'#39#39', '#39#39'bf_f' +
+        'iScratch_sql'#39#39') from RDB$database'#39', 0);'
+      ''
+      ''
+      'setprop('#39'ibquery1.active'#39',false);'
+      'SetTString ('#39'IBQuery1.SQL'#39', Sh);'
+      'setprop('#39'ibquery1.active'#39',true);'
+      ''
+      ''
+      'end;'
+      ''
+      ''
+      ''
+      '')
+  end
+end
